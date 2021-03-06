@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  body{
+    padding-top: 100px ;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(31, 30, 30);
+    overflow: hidden;
+  }
+  button{
+    display: block;
+    height: 50px;
+    width: 200px;
+    margin: 0 auto;
+
+    border: none;
+    background-color: rgb(60, 145, 39);
+    font-size: 18px;
+    color: azure;
+
+    /* 第一步
+      clip-path绘制蒙版，只有在蒙版内才可见 
+    */
+    clip-path: polygon(
+    0 0,
+    100% 0, 
+    100% 100% ,
+    calc(100% - 25px) 100%, 
+    calc(100% - 25px) calc(100% - 15px),
+    calc(100% - 50px) calc(100% - 15px), 
+    calc(100% - 50px) 100%,
+    25px 100%,
+    0 calc(100% - 15px) );
+
+    position: relative;
+    z-index: 1;
+
+    /*
+    详见MDN文档
+    -circle 绘制圆形
+    -ellipse 椭圆
+    -polygon 多边形
+    */
+    
+  }
+  /* 第二步，使用伪元素实现阴影效果 */
+  button::after{
+    display: inline-block;
+    content: "";
+    height: 50px;
+    width: 200px;
+    background-color:rgb(221, 58, 17) ;
+    
+    position: absolute;
+    left: -2px;
+    top: 0;
+    z-index: -1;
+
+    clip-path: polygon(
+    0 0,
+    100% 0, 
+    100% 100% ,
+    calc(100% - 25px) 100%, 
+    calc(100% - 25px) calc(100% - 15px),
+    calc(100% - 50px) calc(100% - 15px), 
+    calc(100% - 50px) 100%,
+    25px 100%,
+    0 calc(100% - 15px) );
+  }
+</style>
+<body>
+  <button>call me</button>
+  <script>
+    let btn = document.querySelector("button")
+    btn.addEventListener("click", (event) => {
+      console.log(1);
+      event.stopPropagation();
+    },false)
+  </script>
+</body>
+</html>

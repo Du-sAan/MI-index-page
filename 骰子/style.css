@@ -1,0 +1,151 @@
+body {
+  background-color: #333;
+  /* 视距，给浏览器说明人眼离html的距离 */
+  perspective: 800px;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateX(0) rotateY(0);
+  }
+  50% {
+    transform: rotateX(180deg)  rotateZ(90deg);
+  }
+
+  to {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+#dice {
+  width: 100px;
+  height: 100px;
+  margin: 100px auto;
+
+  /* 设置3D效果和过渡 */
+  transform-style: preserve-3d;
+}
+
+.active {
+  /* key的名字，持续事件，无限次，从0到100%交替执行，延迟0.5s执行 */
+  animation: rotate 4s infinite alternate 2s;
+}
+
+.dice {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 8px;
+
+  position: absolute;
+  /* opacity: 0.5; */
+}
+
+.node {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.one {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateZ(50px);
+  z-index: 1;
+}
+
+.two {
+  display: flex;
+  justify-content: space-between;
+  /* 把2放到骰子的左面 */
+  transform: translateX(-50%) rotateY(90deg);
+}
+
+.two-node:nth-of-type(2) {
+  align-self: flex-end;
+}
+
+.three {
+  display: flex;
+  justify-content: space-between;
+  /* 把3放到骰子的下面 */
+  transform: translateY(50%) rotateX(-90deg);
+}
+
+.three-node:nth-of-type(2) {
+  align-self: center;
+}
+
+.three-node:nth-of-type(3) {
+  align-self: flex-end;
+}
+
+.four {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  /* 把4放到骰子的上面 */
+  transform: translateY(-50%) rotateX(90deg);
+}
+
+.four-node:nth-of-type(2) {
+  justify-self: flex-end;
+}
+
+.four-node:nth-of-type(3) {
+  align-self: flex-end;
+}
+
+.four-node:nth-of-type(4) {
+  justify-self: flex-end;
+  align-self: flex-end;
+}
+
+.five {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  /* 把5放到骰子的右边 */
+  transform: translateX(50%) rotateY(90deg);
+}
+
+.five-node:nth-of-type(2) {
+  justify-self: flex-end;
+}
+
+.five-node:nth-of-type(3) {
+  align-self: flex-end;
+}
+
+.five-node:nth-of-type(4) {
+  justify-self: flex-end;
+  align-self: flex-end;
+}
+
+/* 用伪元素来充当中间的小圆点 */
+.five::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: red;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.six {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+
+  transform: rotateY(180deg) translateZ(50px);
+}

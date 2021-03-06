@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="dice">
+    <div class="one dice">
+      <div class="one-node node"></div>
+    </div>
+    <div class="two dice">
+      <div class="two-node node"></div>
+      <div class="two-node node"></div>
+    </div>
+    <div class="three dice">
+      <div class="three-node node"></div>
+      <div class="three-node node"></div>
+      <div class="three-node node"></div>
+    </div>
+    <div class="four dice">
+      <div class="four-node node"></div>
+      <div class="four-node node"></div>
+      <div class="four-node node"></div>
+      <div class="four-node node"></div>
+    </div>
+    <div class="five dice">
+      <div class="five-node node"></div>
+      <div class="five-node node"></div>
+      <div class="five-node node"></div>
+      <div class="five-node node"></div>
+      <!-- <div class="five-node node"></div> -->
+    </div>
+    <div class="six dice">
+      <div class="six-node node"></div>
+      <div class="six-node node"></div>
+      <div class="six-node node"></div>
+      <div class="six-node node"></div>
+      <div class="six-node node"></div>
+      <div class="six-node node"></div>
+    </div>
+  </div>
+  <script>
+    let dice = document.getElementById("dice")
+    dice.onclick = function(){
+      dice.classList.toggle("active");
+    }
+  </script>
+</body>
+</html>

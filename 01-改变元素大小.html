@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  div{
+    border: 1px solid black;
+
+    /* 只支持black/inline-black元素，需要开启overflow */
+    resize: both;
+    overflow: auto;
+    /* ResizeObserver API监听元素宽高的改变 */
+    line-height: 100%;
+  }
+  span{
+    display: flex-box;
+    border: 1px solid black;
+    resize: both;
+    overflow: hidden;
+  }
+</style>
+<body>
+  <div >
+    w
+    <input type="textarea">
+  </div>
+  <script>
+    let div  = document.querySelector("div")
+    let resizeObserve = new ResizeObserver( (entrys) =>{
+      // console.log(Array.isArray(entrys));//true
+      let div = entrys[0].target;
+      // 让文字一直居中
+      div.style.lineHeight = div.style.height
+      console.log(1)
+    });
+    resizeObserve.observe(div)
+    console.log(resizeObserve)
+  </script>
+</body>
+</html>
